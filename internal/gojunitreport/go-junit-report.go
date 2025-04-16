@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/joschi/go-junit-report/v2/gtr"
+	"github.com/joschi/go-junit-report/v2/internal/codeowners"
 	"github.com/joschi/go-junit-report/v2/junit"
 	"github.com/joschi/go-junit-report/v2/parser/gotest"
 )
@@ -28,6 +29,8 @@ type Config struct {
 	Properties          map[string]string
 	TimestampFunc       func() time.Time
 	AssumeNoBuildOutput bool
+
+	Owners *codeowners.Ruleset
 
 	// For debugging
 	PrintEvents bool
@@ -72,7 +75,12 @@ func (c Config) Run(input io.Reader, output io.Writer) (*gtr.Report, error) {
 }
 
 func (c Config) writeJunitXML(w io.Writer, report gtr.Report) error {
-	testsuites := junit.CreateFromReport(report, c.Hostname)
+	var testsuites junit.Testsuites
+	if c.Owners == nil {
+		testsuites = junit.CreateFromReport(report, c.Hostname, nil)
+	} else {
+		testsuites = junit.CreateFromReport(report, c.Hostname, c.Owners)
+	}
 	if !c.SkipXMLHeader {
 		_, err := fmt.Fprintf(w, xml.Header)
 		if err != nil {
