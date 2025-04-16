@@ -5,7 +5,7 @@
 			<property name="go.version" value="1.0"></property>
 			<property name="coverage.statements.pct" value="13.37"></property>
 		</properties>
-		<testcase name="TestZ" classname="package/name" time="0.060"></testcase>
-		<testcase name="TestA" classname="package/name" time="0.100"></testcase>
+		<testcase name="TestZ" classname="package/name" time="0.060" status="passed"></testcase>
+		<testcase name="TestA" classname="package/name" time="0.100" status="passed"></testcase>
 	</testsuite>
 </testsuites>

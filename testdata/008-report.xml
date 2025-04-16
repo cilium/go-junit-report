@@ -4,15 +4,15 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestP1" classname="package/parallel" time="0.100">
+		<testcase name="TestP1" classname="package/parallel" time="0.100" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:10: t.Log(P1)
     pkg_test.go:12: P1 error]]></failure>
 		</testcase>
-		<testcase name="TestP2" classname="package/parallel" time="0.050">
+		<testcase name="TestP2" classname="package/parallel" time="0.050" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:17: t.Log(P2)
     pkg_test.go:19: P2 error]]></failure>
 		</testcase>
-		<testcase name="TestP3" classname="package/parallel" time="0.080">
+		<testcase name="TestP3" classname="package/parallel" time="0.080" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:24: t.Log(P3)
     pkg_test.go:26: P3 error]]></failure>
 		</testcase>

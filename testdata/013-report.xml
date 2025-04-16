@@ -4,13 +4,13 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestA" classname="package/name/passing1" time="0.100"></testcase>
+		<testcase name="TestA" classname="package/name/passing1" time="0.100" status="passed"></testcase>
 	</testsuite>
 	<testsuite name="package/name/passing2" tests="1" failures="0" errors="0" id="1" hostname="hostname" time="0.100" timestamp="2022-01-01T00:00:00Z">
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestB" classname="package/name/passing2" time="0.100"></testcase>
+		<testcase name="TestB" classname="package/name/passing2" time="0.100" status="passed"></testcase>
 	</testsuite>
 	<testsuite name="package/name/failing1" tests="1" failures="0" errors="1" id="2" hostname="hostname" time="0.000" timestamp="2022-01-01T00:00:00Z">
 		<properties>

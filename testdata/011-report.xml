@@ -4,7 +4,7 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestOne" classname="package/name" time="0.020"></testcase>
-		<testcase name="TestTwo" classname="package/name" time="0.030"></testcase>
+		<testcase name="TestOne" classname="package/name" time="0.020" status="passed"></testcase>
+		<testcase name="TestTwo" classname="package/name" time="0.030" status="passed"></testcase>
 	</testsuite>
 </testsuites>

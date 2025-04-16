@@ -4,17 +4,17 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestP1" classname="package/name/parallel" time="0.000">
+		<testcase name="TestP1" classname="package/name/parallel" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:10: t.Log(P1)
 fmt.Printf(P1)
     pkg_test.go:14: P1 error]]></failure>
 		</testcase>
-		<testcase name="TestP2" classname="package/name/parallel" time="0.000">
+		<testcase name="TestP2" classname="package/name/parallel" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:19: t.Log(P2)
 fmt.Printf(P2)
     pkg_test.go:23: P2 error]]></failure>
 		</testcase>
-		<testcase name="TestP3" classname="package/name/parallel" time="0.000">
+		<testcase name="TestP3" classname="package/name/parallel" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    pkg_test.go:28: t.Log(P3)
 fmt.Printf(P3)
     pkg_test.go:32: P3 error]]></failure>

@@ -222,6 +222,7 @@ func createTestcaseForTest(pkgName string, test gtr.Test) Testcase {
 		Classname: pkgName,
 		Name:      test.Name,
 		Time:      formatDuration(test.Duration),
+		Status:    "passed",
 	}
 
 	if test.Result == gtr.Fail {
@@ -229,6 +230,7 @@ func createTestcaseForTest(pkgName string, test gtr.Test) Testcase {
 			Message: "Failed",
 			Data:    formatOutput(test.Output),
 		}
+		tc.Status = "failed"
 	} else if test.Result == gtr.Skip {
 		message := ""
 		data := ""
@@ -243,11 +245,13 @@ func createTestcaseForTest(pkgName string, test gtr.Test) Testcase {
 			Message: message,
 			Data:    data,
 		}
+		tc.Status = "skipped"
 	} else if test.Result == gtr.Unknown {
 		tc.Error = &Result{
 			Message: "No test result found",
 			Data:    formatOutput(test.Output),
 		}
+		tc.Status = ""
 	} else if len(test.Output) > 0 {
 		tc.SystemOut = &Output{Data: formatOutput(test.Output)}
 	}

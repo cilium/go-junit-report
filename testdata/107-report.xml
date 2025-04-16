@@ -4,16 +4,16 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestSkip" classname="package/skip" time="0.000">
+		<testcase name="TestSkip" classname="package/skip" time="0.000" status="skipped">
 			<skipped message="skip_test.go:6: skip message"></skipped>
 		</testcase>
-		<testcase name="TestSkipNow" classname="package/skip" time="0.000">
+		<testcase name="TestSkipNow" classname="package/skip" time="0.000" status="skipped">
 			<skipped message="skip_test.go:10: log message"></skipped>
 		</testcase>
-		<testcase name="TestSkipNoMessage" classname="package/skip" time="0.000">
+		<testcase name="TestSkipNoMessage" classname="package/skip" time="0.000" status="skipped">
 			<skipped message=""></skipped>
 		</testcase>
-		<testcase name="TestSkipLogMessage" classname="package/skip" time="0.000">
+		<testcase name="TestSkipLogMessage" classname="package/skip" time="0.000" status="skipped">
 			<skipped message="skip_test.go:20: skip message"><![CDATA[    skip_test.go:19: log message]]></skipped>
 		</testcase>
 	</testsuite>

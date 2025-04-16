@@ -4,13 +4,13 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="BenchmarkError" classname="package/name/benchfail" time="0.000">
+		<testcase name="BenchmarkError" classname="package/name/benchfail" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    bench_test.go:6: error message]]></failure>
 		</testcase>
-		<testcase name="BenchmarkFatal" classname="package/name/benchfail" time="0.000">
+		<testcase name="BenchmarkFatal" classname="package/name/benchfail" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    bench_test.go:10: fatal message]]></failure>
 		</testcase>
-		<testcase name="BenchmarkSkip" classname="package/name/benchfail" time="0.000">
+		<testcase name="BenchmarkSkip" classname="package/name/benchfail" time="0.000" status="skipped">
 			<skipped message="bench_test.go:14: skip message"></skipped>
 		</testcase>
 		<system-out><![CDATA[goos: linux
