@@ -6,6 +6,8 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"log/slog"
+	"slices"
 	"strings"
 	"time"
 
@@ -121,11 +123,18 @@ type Testcase struct {
 	Time   string `xml:"time,attr,omitempty"` // duration in seconds
 	Status string `xml:"status,attr,omitempty"`
 
+	Properties *Properties `xml:"properties,omitempty"`
+
 	Skipped   *Result `xml:"skipped,omitempty"`
 	Error     *Result `xml:"error,omitempty"`
 	Failure   *Result `xml:"failure,omitempty"`
 	SystemOut *Output `xml:"system-out,omitempty"`
 	SystemErr *Output `xml:"system-err,omitempty"`
+}
+
+// Properties represents additional information of a test suite.
+type Properties struct {
+	Properties []Property `xml:"property"`
 }
 
 // Property represents a key/value pair.
@@ -146,8 +155,13 @@ type Output struct {
 	Data string `xml:",cdata"`
 }
 
+// Owners determines ownership for individual test cases.
+type Owners interface {
+	Match(relPath string) ([]string, error)
+}
+
 // CreateFromReport creates a JUnit representation of the given gtr.Report.
-func CreateFromReport(report gtr.Report, hostname string) Testsuites {
+func CreateFromReport(report gtr.Report, hostname string, owners Owners) Testsuites {
 	var suites Testsuites
 	for _, pkg := range report.Packages {
 		var duration time.Duration
@@ -175,7 +189,11 @@ func CreateFromReport(report gtr.Report, hostname string) Testsuites {
 
 		for _, test := range pkg.Tests {
 			duration += test.Duration
-			suite.AddTestcase(createTestcaseForTest(pkg.Name, test))
+			if owners != nil {
+				suite.AddTestcase(createTestcaseForTest(pkg.Name, test, owners))
+			} else {
+				suite.AddTestcase(createTestcaseForTest(pkg.Name, test, nil))
+			}
 		}
 
 		// JUnit doesn't have a good way of dealing with build or runtime
@@ -217,7 +235,7 @@ func CreateFromReport(report gtr.Report, hostname string) Testsuites {
 	return suites
 }
 
-func createTestcaseForTest(pkgName string, test gtr.Test) Testcase {
+func createTestcaseForTest(pkgName string, test gtr.Test, owners Owners) Testcase {
 	tc := Testcase{
 		Classname: pkgName,
 		Name:      test.Name,
@@ -251,6 +269,35 @@ func createTestcaseForTest(pkgName string, test gtr.Test) Testcase {
 	} else if len(test.Output) > 0 {
 		tc.SystemOut = &Output{Data: formatOutput(test.Output)}
 	}
+
+	if owners != nil {
+		owners, err := owners.Match(pkgName)
+		if err != nil {
+			slog.Error("Failed to locate owner for package", "path", pkgName, "error", err)
+		} else {
+			properties := make([]Property, 0, len(owners))
+			for _, o := range owners {
+				properties = append(properties, Property{
+					Name:  "owner",
+					Value: o,
+				})
+			}
+			slices.SortFunc(properties,
+				func(a, b Property) int {
+					if a.Value < b.Value {
+						return -1
+					}
+					if a.Value > b.Value {
+						return 1
+					}
+					return 0
+				})
+			if len(properties) > 0 {
+				tc.Properties = &Properties{Properties: properties}
+			}
+		}
+	}
+
 	return tc
 }
 
