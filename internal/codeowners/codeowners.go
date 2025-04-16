@@ -22,6 +22,8 @@ type Ruleset struct {
 	// typically define relative paths within a repository, but not the
 	// full repository path.
 	prefix string
+
+	exclude map[string]struct{}
 }
 
 // Load code owners from 'paths', ignoring
@@ -54,7 +56,17 @@ func Load(paths []string, ignorePrefix string) (*Ruleset, error) {
 	return &Ruleset{
 		allOwners,
 		ignorePrefix,
+		make(map[string]struct{}),
 	}, nil
+}
+
+func (r *Ruleset) WithExcludedOwners(excludedOwners []string) *Ruleset {
+	excluded := make(map[string]struct{})
+	for _, o := range excludedOwners {
+		excluded[o] = struct{}{}
+	}
+	r.exclude = excluded
+	return r
 }
 
 func (r *Ruleset) Match(relPath string) ([]string, error) {
@@ -68,6 +80,9 @@ func (r *Ruleset) Match(relPath string) ([]string, error) {
 	}
 	owners := make([]string, 0, len(rule.Owners))
 	for _, o := range rule.Owners {
+		if _, ok := r.exclude[o.String()]; ok {
+			continue
+		}
 		owners = append(owners, o.String())
 	}
 	return owners, nil
