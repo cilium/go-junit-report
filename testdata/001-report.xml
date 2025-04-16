@@ -4,8 +4,8 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestPass" classname="package/pass" time="0.060"></testcase>
-		<testcase name="TestPassLog" classname="package/pass" time="0.100">
+		<testcase name="TestPass" classname="package/pass" time="0.060" status="passed"></testcase>
+		<testcase name="TestPassLog" classname="package/pass" time="0.100" status="passed">
 			<system-out><![CDATA[    pass_test.go:9: log line
     pass_test.go:10: log
         multi
@@ -16,7 +16,7 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestOne" classname="package/fail" time="0.151">
+		<testcase name="TestOne" classname="package/fail" time="0.151" status="failed">
 			<failure message="Failed"><![CDATA[    fail_test.go:6: Error message
     fail_test.go:7: Longer
         error
@@ -27,10 +27,10 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestSkip" classname="package/skip" time="0.020">
+		<testcase name="TestSkip" classname="package/skip" time="0.020" status="skipped">
 			<skipped message="skip_test.go:6: skip message"></skipped>
 		</testcase>
-		<testcase name="TestSkipNow" classname="package/skip" time="0.130">
+		<testcase name="TestSkipNow" classname="package/skip" time="0.130" status="skipped">
 			<skipped message="skip_test.go:10: log message"></skipped>
 		</testcase>
 	</testsuite>

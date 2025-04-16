@@ -3,8 +3,8 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestPass" classname="package/pass" time="0.060"></testcase>
-		<testcase name="TestPassLog" classname="package/pass" time="0.100">
+		<testcase name="TestPass" classname="package/pass" time="0.060" status="passed"></testcase>
+		<testcase name="TestPassLog" classname="package/pass" time="0.100" status="passed">
 			<system-out><![CDATA[    pass_test.go:9: log line
     pass_test.go:10: log
         multi

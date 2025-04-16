@@ -4,7 +4,7 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestRace" classname="package/race" time="0.000">
+		<testcase name="TestRace" classname="package/race" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    race_test.go:13: x = 3
 ==================
 WARNING: DATA RACE

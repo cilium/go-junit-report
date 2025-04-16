@@ -4,29 +4,29 @@
 		<properties>
 			<property name="go.version" value="1.0"></property>
 		</properties>
-		<testcase name="TestSubtests" classname="package/subtests" time="0.000">
+		<testcase name="TestSubtests" classname="package/subtests" time="0.000" status="failed">
 			<failure message="Failed"></failure>
 		</testcase>
-		<testcase name="TestSubtests/Subtest" classname="package/subtests" time="0.000">
+		<testcase name="TestSubtests/Subtest" classname="package/subtests" time="0.000" status="passed">
 			<system-out><![CDATA[    subtests_test.go:7: ok]]></system-out>
 		</testcase>
-		<testcase name="TestSubtests/Subtest#01" classname="package/subtests" time="0.000">
+		<testcase name="TestSubtests/Subtest#01" classname="package/subtests" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    subtests_test.go:10: error message]]></failure>
 		</testcase>
-		<testcase name="TestSubtests/Subtest#02" classname="package/subtests" time="0.000">
+		<testcase name="TestSubtests/Subtest#02" classname="package/subtests" time="0.000" status="skipped">
 			<skipped message="subtests_test.go:13: skip message"></skipped>
 		</testcase>
-		<testcase name="TestNestedSubtests" classname="package/subtests" time="0.000"></testcase>
-		<testcase name="TestNestedSubtests/a#1" classname="package/subtests" time="0.000"></testcase>
-		<testcase name="TestNestedSubtests/a#1/b#1" classname="package/subtests" time="0.000"></testcase>
-		<testcase name="TestNestedSubtests/a#1/b#1/c#1" classname="package/subtests" time="0.000"></testcase>
-		<testcase name="TestFailingSubtestWithNestedSubtest" classname="package/subtests" time="0.000">
+		<testcase name="TestNestedSubtests" classname="package/subtests" time="0.000" status="passed"></testcase>
+		<testcase name="TestNestedSubtests/a#1" classname="package/subtests" time="0.000" status="passed"></testcase>
+		<testcase name="TestNestedSubtests/a#1/b#1" classname="package/subtests" time="0.000" status="passed"></testcase>
+		<testcase name="TestNestedSubtests/a#1/b#1/c#1" classname="package/subtests" time="0.000" status="passed"></testcase>
+		<testcase name="TestFailingSubtestWithNestedSubtest" classname="package/subtests" time="0.000" status="failed">
 			<failure message="Failed"></failure>
 		</testcase>
-		<testcase name="TestFailingSubtestWithNestedSubtest/Subtest" classname="package/subtests" time="0.000">
+		<testcase name="TestFailingSubtestWithNestedSubtest/Subtest" classname="package/subtests" time="0.000" status="failed">
 			<failure message="Failed"><![CDATA[    subtests_test.go:31: Subtest error message]]></failure>
 		</testcase>
-		<testcase name="TestFailingSubtestWithNestedSubtest/Subtest/Subsubtest" classname="package/subtests" time="0.000">
+		<testcase name="TestFailingSubtestWithNestedSubtest/Subtest/Subsubtest" classname="package/subtests" time="0.000" status="passed">
 			<system-out><![CDATA[    subtests_test.go:29: ok]]></system-out>
 		</testcase>
 		<system-out><![CDATA[exit status 1]]></system-out>
