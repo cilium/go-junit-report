@@ -6,6 +6,7 @@ package codeowners
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/hmarr/codeowners"
 )
@@ -16,18 +17,24 @@ var (
 
 type Ruleset struct {
 	codeowners.Ruleset
+
+	// prefix is removed from all 'Match()' calls, as the CODEOWNERS files
+	// typically define relative paths within a repository, but not the
+	// full repository path.
+	prefix string
 }
 
-func Load(paths []string) (*Ruleset, error) {
+// Load code owners from 'paths', ignoring
+func Load(paths []string, ignorePrefix string) (*Ruleset, error) {
+	var allOwners codeowners.Ruleset
+
 	if len(paths) == 0 {
 		owners, err := codeowners.LoadFileFromStandardLocation()
 		if err != nil {
 			return nil, fmt.Errorf("while loading: %w", err)
 		}
-		return &Ruleset{owners}, nil
+		allOwners = owners
 	}
-
-	var allOwners codeowners.Ruleset
 
 	for _, f := range paths {
 		coFile, err := os.Open(f)
@@ -44,11 +51,15 @@ func Load(paths []string) (*Ruleset, error) {
 		allOwners = append(allOwners, owners...)
 	}
 
-	return &Ruleset{allOwners}, nil
+	return &Ruleset{
+		allOwners,
+		ignorePrefix,
+	}, nil
 }
 
 func (r *Ruleset) Match(relPath string) ([]string, error) {
-	rule, err := r.Ruleset.Match(relPath)
+	path := strings.TrimPrefix(relPath, r.prefix) + "/"
+	rule, err := r.Ruleset.Match(path)
 	if err == nil && (rule == nil || rule.Owners == nil) {
 		err = ErrNoOwners
 	}
