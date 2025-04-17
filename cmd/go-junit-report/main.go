@@ -17,7 +17,7 @@ import (
 
 // Current release information printed by the -version flag.
 var (
-	version = "v2.2.0-dev"
+	version = "v2.3.1-dev"
 	commit  = "HEAD"
 	date    string
 )
