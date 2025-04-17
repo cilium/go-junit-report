@@ -10,9 +10,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/cilium/go-junit-report/v2/internal/codeowners"
-	"github.com/cilium/go-junit-report/v2/internal/gojunitreport"
-	"github.com/cilium/go-junit-report/v2/parser/gotest"
+	"github.com/joschi/go-junit-report/v2/internal/codeowners"
+	"github.com/joschi/go-junit-report/v2/internal/gojunitreport"
+	"github.com/joschi/go-junit-report/v2/parser/gotest"
 )
 
 // Current release information printed by the -version flag.
