@@ -107,15 +107,9 @@ func main() {
 	hostname, _ := os.Hostname() // ignore error
 
 	var owners *codeowners.Ruleset
-	if logOwners != nil {
-		var ignorePrefix string
-
-		if logOwnersPrefix != nil {
-			ignorePrefix = *logOwnersPrefix
-		}
-
+	if *logOwnersPrefix != "" {
 		paths := strings.Split(*logOwners, ",")
-		o, err := codeowners.Load(paths, ignorePrefix)
+		o, err := codeowners.Load(paths, *logOwnersPrefix)
 		if err != nil {
 			exitf("error parsing owners file: %v", err)
 		}
