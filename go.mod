@@ -1,4 +1,4 @@
-module github.com/joschi/go-junit-report/v2
+module github.com/cilium/go-junit-report/v2
 
 go 1.21.0
 

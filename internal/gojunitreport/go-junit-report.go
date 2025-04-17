@@ -8,10 +8,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/joschi/go-junit-report/v2/gtr"
-	"github.com/joschi/go-junit-report/v2/internal/codeowners"
-	"github.com/joschi/go-junit-report/v2/junit"
-	"github.com/joschi/go-junit-report/v2/parser/gotest"
+	"github.com/cilium/go-junit-report/v2/gtr"
+	"github.com/cilium/go-junit-report/v2/internal/codeowners"
+	"github.com/cilium/go-junit-report/v2/junit"
+	"github.com/cilium/go-junit-report/v2/parser/gotest"
 )
 
 type parser interface {
